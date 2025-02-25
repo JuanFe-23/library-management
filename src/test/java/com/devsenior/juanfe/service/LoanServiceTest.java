@@ -199,4 +199,33 @@ public class LoanServiceTest {
         assertTrue(loans.isEmpty());
     }
 
+    @DisplayName("Obtener prestamos de un usuario existente")
+    @Test
+    void testGetLoansByUserId() throws NotFoundException, BookNotAvailableException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var isbn = "17112423";
+
+        var mockUser = new User(userId, "Juan Linares", "juanzlinares@devsenior.com");
+        var mockBook = new Book(isbn, "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
+
+        Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
+        Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
+
+        service.loanBook(userId, isbn);
+
+        // WHEN
+
+        var loan = service.getLoanByUser(userId);
+
+        // THEN
+
+        assertNotNull(loan);
+        assertEquals(userId, loan.getUser().getId());
+        assertEquals(isbn, loan.getBook().getIsbn());
+        
+    }
+
 }
