@@ -77,15 +77,13 @@ public class LoanServiceTest {
         service.loanBook(userId, isbn);
 
         var UserId2 = "100748";
-        var mockUser2 = new User(UserId2,"Sara Escobar", "saraescobar@devsenior.com");
+        var mockUser2 = new User(UserId2, "Sara Escobar", "saraescobar@devsenior.com");
 
         Mockito.when(userService.getUserById(UserId2)).thenReturn(mockUser2);
 
         // WHEN - THEN
 
         assertThrows(BookNotAvailableException.class, () -> service.loanBook(UserId2, isbn));
-
-
 
     }
 
@@ -155,19 +153,26 @@ public class LoanServiceTest {
 
     @DisplayName("Obtener todos los prestamos")
     @Test
-    void testGetAllLoans() {
+    void testGetAllLoans() throws NotFoundException, BookNotAvailableException {
         // GIVEN
 
-        var mockUser = new User("100747", "Juan Linares", "juanzlinares@devsenior.com");
-        var mockBook = new Book("17112423", "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
-        var mockBook2 = new Book("17112424", "Aprendiendo de las pruebas unitarias 2", "Cesar Diaz");
-        var mockUser2 = new User("100748", "Juan Linares 2", "juanzlinares2@devsenior.com");
+        var userId = "100747";
+        var isbn = "17112423";
+        var userId2 = "100748";
+        var isbn2 = "17112424";
 
-        Loan loan1 = new Loan(mockUser, mockBook);
-        Loan loan2 = new Loan(mockUser2, mockBook2);
+        var mockUser = new User(userId, "Juan Linares", "juanzlinares@devsenior.com");
+        var mockUser2 = new User(userId2, "Sara Escobar", "saraescobar@devsenior.com");
+        var mockBook = new Book(isbn, "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
+        var mockBook2 = new Book(isbn2, "Incendiario", "Itiel Arroyo");
 
-        service.getAllLoans().add(loan1);
-        service.getAllLoans().add(loan2);
+        Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
+        Mockito.when(userService.getUserById(userId2)).thenReturn(mockUser2);
+        Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
+        Mockito.when(bookService.getBookByIsbn(isbn2)).thenReturn(mockBook2);
+
+        service.loanBook(userId, isbn);
+        service.loanBook(userId2, isbn2);
 
         // WHEN
 
