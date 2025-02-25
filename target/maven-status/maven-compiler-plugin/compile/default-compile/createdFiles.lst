@@ -1,0 +1,9 @@
+com\devsenior\juanfe\model\Book.class
+com\devsenior\juanfe\Exceptions\NotFoundException.class
+com\devsenior\juanfe\model\User.class
+com\devsenior\juanfe\Main.class
+com\devsenior\juanfe\model\LoanState.class
+com\devsenior\juanfe\service\LoanService.class
+com\devsenior\juanfe\service\UserService.class
+com\devsenior\juanfe\model\Loan.class
+com\devsenior\juanfe\service\BookService.class
