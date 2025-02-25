@@ -1,3 +1,4 @@
+com\devsenior\juanfe\Exceptions\BookNotAvailableException.class
 com\devsenior\juanfe\model\Book.class
 com\devsenior\juanfe\Exceptions\NotFoundException.class
 com\devsenior\juanfe\model\User.class

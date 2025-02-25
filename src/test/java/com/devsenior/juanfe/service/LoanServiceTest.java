@@ -60,6 +60,35 @@ public class LoanServiceTest {
 
     }
 
+    @DisplayName("Agregar un prestamo nuevo con un libro ya prestado")
+    @Test
+    void testLoanBookWhenBookAlreadyLoaned() throws NotFoundException, BookNotAvailableException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var isbn = "17112423";
+        var mockUser = new User(userId, "Juan Linares", "juanzlinares@devsenior.com");
+        var mockBook = new Book(isbn, "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
+
+        Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
+        Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
+
+        service.loanBook(userId, isbn);
+
+        var UserId2 = "100748";
+        var mockUser2 = new User(UserId2,"Sara Escobar", "saraescobar@devsenior.com");
+
+        Mockito.when(userService.getUserById(UserId2)).thenReturn(mockUser2);
+
+        // WHEN - THEN
+
+        assertThrows(BookNotAvailableException.class, () -> service.loanBook(UserId2, isbn));
+
+
+
+    }
+
     @DisplayName("Agragar un prestamo con un usuario y un libro inexistente")
     @Test
     void testLoanBookWhenNotExistingUserAndBook() throws NotFoundException {

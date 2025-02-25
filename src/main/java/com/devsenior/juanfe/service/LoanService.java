@@ -31,12 +31,9 @@ public class LoanService {
                 throw new BookNotAvailableException("El libro con isbn: " + isbn + " ya esta prestado");
 
             }
-
-            Loan newLoan = new Loan(user, book);
-            newLoan.setState(LoanState.STARTED);
-
-            loans.add(newLoan);
         }
+
+        loans.add(new Loan(user, book));
 
     }
 
