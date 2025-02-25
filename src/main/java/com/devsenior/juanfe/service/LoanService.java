@@ -3,6 +3,7 @@ package com.devsenior.juanfe.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.devsenior.juanfe.Exceptions.BookNotAvailableException;
 import com.devsenior.juanfe.Exceptions.NotFoundException;
 import com.devsenior.juanfe.model.Book;
 import com.devsenior.juanfe.model.Loan;
@@ -21,11 +22,21 @@ public class LoanService {
         this.loans = new ArrayList<>();
     }
 
-    public void loanBook(String userId, String isbn) throws NotFoundException {
+    public void loanBook(String userId, String isbn) throws NotFoundException, BookNotAvailableException {
         User user = userService.getUserById(userId);
         Book book = bookService.getBookByIsbn(isbn);
 
-        loans.add(new Loan(user, book));
+        for (Loan loan : loans) {
+            if (loan.getBook().getIsbn().equals(isbn) && loan.getState().equals(LoanState.STARTED)) {
+                throw new BookNotAvailableException("El libro con isbn: " + isbn + " ya esta prestado");
+
+            }
+
+            Loan newLoan = new Loan(user, book);
+            newLoan.setState(LoanState.STARTED);
+
+            loans.add(newLoan);
+        }
 
     }
 
@@ -46,4 +57,14 @@ public class LoanService {
     public List<Loan> getAllLoans() {
         return loans;
     }
+
+    public Loan getLoanByUser(String userId) throws NotFoundException {
+        for (Loan loan : loans) {
+            if (loan.getUser().getId().equals(userId)) {
+                return loan;
+            }
+        }
+        throw new NotFoundException("No hay ningun prestamo del usuario con id: " + userId);
+    }
+
 }

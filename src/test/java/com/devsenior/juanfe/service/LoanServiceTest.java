@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import com.devsenior.juanfe.Exceptions.BookNotAvailableException;
 import com.devsenior.juanfe.Exceptions.NotFoundException;
 import com.devsenior.juanfe.model.Book;
 import com.devsenior.juanfe.model.Loan;
@@ -31,7 +32,7 @@ public class LoanServiceTest {
 
     @DisplayName("Agragar un prestamo con un usuario y un libro existente")
     @Test
-    void testLoanBookWhenExistingUserAndBook() throws NotFoundException {
+    void testLoanBookWhenExistingUserAndBook() throws NotFoundException, BookNotAvailableException {
 
         // GIVEN
 
