@@ -106,6 +106,7 @@ public class LoanServiceTest {
         assertThrows(NotFoundException.class, () -> service.loanBook(userId, isbn));
 
     }
+    
 
     @DisplayName("Devolver un prestamo existente")
     @Test
@@ -227,5 +228,22 @@ public class LoanServiceTest {
         assertEquals(isbn, loan.getBook().getIsbn());
         
     }
+
+    @DisplayName("Obtener prestamos de un usuario inexistente")
+    @Test
+    void testGetLoansByUserIdWhenNotExistingUser() throws NotFoundException, BookNotAvailableException {
+
+        // GIVEN
+
+        var userId = "100747851";
+
+        // WHEN - THEN
+
+        assertThrows(NotFoundException.class, () -> service.getLoanByUser(userId));
+
+    }
+
+
+
 
 }
