@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,6 +43,31 @@ public class UserServiceTest {
         assertEquals(userId, user.getId());
         assertEquals(name, user.getName());
         assertEquals(email, user.getEmail());
+    }
+
+    @DisplayName("Añadir un usuario con fecha de registro")
+    @Test
+    void testAddUserWithRegistrationDate() throws NotFoundException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var name = "Juan Linares";
+        var email = "juanzlinares@devsenior.com";
+        var registerDate = LocalDate.now();
+
+        // WHEN
+
+        service.addUser(userId, name, email, registerDate);
+
+        // THEN
+
+        var user = service.getUserById(userId);
+        assertNotNull(user);
+        assertEquals(userId, user.getId());        
+        assertEquals(name, user.getName());
+        assertEquals(email, user.getEmail());
+        assertEquals(registerDate, user.getRegisDate());
     }
 
     @Test
@@ -154,6 +181,20 @@ public class UserServiceTest {
         assertEquals(userId, user.getId());
         assertEquals(name, user.getName()); 
         assertEquals(email, user.getEmail()); 
+    }
+
+    @DisplayName("Obtener un usuario por id pero inexistente")
+    @Test
+    void testGetUserByIdWhenNotExistingUser() throws NotFoundException {
+
+        // GIVEN
+
+        var userId = "100747";
+
+        // WHEN - THEN
+
+        assertThrows(NotFoundException.class, () -> service.getUserById(userId));
+        
     }
 
 
