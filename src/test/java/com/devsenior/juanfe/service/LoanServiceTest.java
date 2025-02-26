@@ -124,6 +124,7 @@ public class LoanServiceTest {
         loan.setState(LoanState.STARTED);
 
         service.getAllLoans().add(loan);
+        assertEquals(LoanState.STARTED, loan.getState());
 
         // WHEN
 
