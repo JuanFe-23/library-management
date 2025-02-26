@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Not;
 
 import com.devsenior.juanfe.Exceptions.BookNotAvailableException;
 import com.devsenior.juanfe.Exceptions.NotFoundException;
@@ -151,6 +152,54 @@ public class LoanServiceTest {
 
         assertThrows(NotFoundException.class, () -> service.returnBook(userId, isbn));
 
+    }
+
+    @DisplayName("Intentar devolver un libro con ISBN incorrecto")
+    @Test
+    void testReturnBookWhenWrongIsbn() throws NotFoundException, BookNotAvailableException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var isbn = "17112423";
+        var isbn2 = "17112424";
+
+        var mockUser = new User(userId, "Juan Linares", "juanzlinares@devsenior.com");
+        var mockBook = new Book(isbn, "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
+
+        Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
+        Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
+
+        service.loanBook(userId, isbn);
+
+        // WHEN - THEN
+
+        assertThrows(NotFoundException.class, () -> service.returnBook(userId, isbn2));
+        
+    }
+
+    @DisplayName("Intentar devolver un libro que ya fue devuelto")
+    @Test
+    void testReturnBookWhenBookAlreadyReturned() throws NotFoundException, BookNotAvailableException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var isbn = "17112423";
+
+        var mockUser = new User(userId, "Juan Linares", "juanzlinares@devsenior.com");
+        var mockBook = new Book(isbn, "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
+
+        Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
+        Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
+
+        service.loanBook(userId, isbn);
+        service.returnBook(userId, isbn);
+
+        // WHEN - THEN
+
+        assertThrows(NotFoundException.class, () -> service.returnBook(userId, isbn));
+        
     }
 
     @DisplayName("Obtener todos los prestamos")
