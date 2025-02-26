@@ -16,8 +16,8 @@ import com.devsenior.juanfe.model.User;
 <span class="fc" id="L16">    }</span>
 
     public void addUser(String id, String name, String email, LocalDate registerDate) {
-<span class="nc" id="L19">        users.add(new User(id, name, email, registerDate));</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L19">        users.add(new User(id, name, email, registerDate));</span>
+<span class="fc" id="L20">    }</span>
 
     public List&lt;User&gt; getAllUsers() {
 <span class="fc" id="L23">        return users;</span>
@@ -28,7 +28,7 @@ import com.devsenior.juanfe.model.User;
 <span class="pc bpc" id="L28" title="1 of 2 branches missed.">            if (user.getId().equals(id)) {</span>
 <span class="fc" id="L29">                return user;</span>
             }
-<span class="nc" id="L31">        }</span>
+        }
         
 <span class="fc" id="L33">        throw new NotFoundException(&quot;No existe el usuario con el id: &quot; + id);</span>
     }
