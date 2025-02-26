@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import com.devsenior.juanfe.Exceptions.NotFoundException;
 import com.devsenior.juanfe.model.Book;
 
@@ -136,8 +135,12 @@ public class BookServiceTest {
 
         // WHEN - THEN
 
-        assertThrows(NotFoundException.class, () -> service.getBookByIsbn(isbn));
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> service.getBookByIsbn(isbn));
+
+        assertEquals("No fue encontrado el libro con el isbn: " + isbn, exception.getMessage());
 
     }
+
+
     
 }
