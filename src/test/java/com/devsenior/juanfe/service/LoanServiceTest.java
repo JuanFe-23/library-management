@@ -122,6 +122,9 @@ public class LoanServiceTest {
         Loan loan = new Loan(mockUser, mockBook);
         loan.setState(LoanState.STARTED);
 
+
+        // Intentar mejorar este test, no es buena practica añadir loans al service
+
         service.getAllLoans().add(loan);
         assertEquals(LoanState.STARTED, loan.getState());
 

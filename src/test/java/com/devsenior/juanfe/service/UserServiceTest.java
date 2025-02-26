@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.devsenior.juanfe.Exceptions.NotFoundException;
+import com.devsenior.juanfe.Exceptions.UserAlreadyExistsException;
 
 public class UserServiceTest {
 
@@ -24,7 +25,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testAddUser() throws NotFoundException {
+    void testAddUser() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
@@ -47,7 +48,7 @@ public class UserServiceTest {
 
     @DisplayName("Añadir un usuario con fecha de registro")
     @Test
-    void testAddUserWithRegistrationDate() throws NotFoundException {
+    void testAddUserWithRegistrationDate() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
@@ -70,8 +71,29 @@ public class UserServiceTest {
         assertEquals(registerDate, user.getRegisDate());
     }
 
+    @DisplayName("Intentar añadir un usuario que ya existe")
     @Test
-    void testUpdateUserEmail() throws NotFoundException {
+    void testAddUserWhenUserAlreadyExists() throws NotFoundException, UserAlreadyExistsException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var name = "Juan Linares";
+        var email = "juanzlinares@devsenior.com";
+
+        service.addUser(userId, name, email);
+
+        var userId2 = "100747";
+        var name2 = "Fernando Linares";
+        var email2 = "ferlin@devsenior.com";
+
+        // WHEN - THEN
+
+        assertThrows(UserAlreadyExistsException.class, () -> service.addUser(userId2, name2, email2));
+    }
+
+    @Test
+    void testUpdateUserEmail() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
@@ -96,7 +118,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testUpdateName() throws NotFoundException {
+    void testUpdateName() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
@@ -122,7 +144,7 @@ public class UserServiceTest {
 
     @DisplayName("Eliminar un usuario existente")
     @Test
-    void testDeleteUser() throws NotFoundException {
+    void testDeleteUser() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
@@ -161,7 +183,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testGetUserById() throws NotFoundException {
+    void testGetUserById() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
@@ -199,7 +221,7 @@ public class UserServiceTest {
 
 
     @Test
-    void testGetAllUsers() throws NotFoundException {
+    void testGetAllUsers() throws NotFoundException, UserAlreadyExistsException {
 
         // GIVEN
 
