@@ -109,7 +109,7 @@ public class LoanServiceTest {
 
     @DisplayName("Devolver un prestamo existente")
     @Test
-    void testReturnBook() throws NotFoundException {
+    void testReturnBook() throws NotFoundException, BookNotAvailableException {
 
         // GIVEN
 
@@ -119,14 +119,10 @@ public class LoanServiceTest {
         var mockUser = new User(userId, "Juan Linares", "juanzlinares@devsenior.com");
         var mockBook = new Book(isbn, "Aprendiendo de las pruebas unitarias", "Cesar Diaz");
 
-        Loan loan = new Loan(mockUser, mockBook);
-        loan.setState(LoanState.STARTED);
-
-
-        // Intentar mejorar este test, no es buena practica añadir loans al service
-
-        service.getAllLoans().add(loan);
-        assertEquals(LoanState.STARTED, loan.getState());
+        Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
+        Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
+        
+        service.loanBook(userId, isbn);
 
         // WHEN
 
@@ -134,6 +130,7 @@ public class LoanServiceTest {
 
         // THEN
 
+        var loan = service.getLoanByUser(userId);
         assertEquals(userId, loan.getUser().getId());
         assertEquals(isbn, loan.getBook().getIsbn());
         assertEquals(LoanState.FINISHED, loan.getState());
