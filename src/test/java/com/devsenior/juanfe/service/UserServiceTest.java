@@ -92,6 +92,28 @@ public class UserServiceTest {
         assertThrows(UserAlreadyExistsException.class, () -> service.addUser(userId2, name2, email2));
     }
 
+    @DisplayName("Intentar añadir un usuario que ya existe y con fecha de registro")
+    @Test
+    void testAddUserWhenUserAlreadyExistsWithRegistrationDate() throws NotFoundException, UserAlreadyExistsException {
+
+        // GIVEN
+
+        var userId = "100747";
+        var name = "Juan Linares";
+        var email = "juanzlinares@devsenior.com";
+        var registerDate = LocalDate.now();
+
+        service.addUser(userId, name, email, registerDate);
+
+        var userId2 = "100747";
+        var name2 = "Fernando Linares";
+        var email2 = "ferlin@devsenior.com";
+
+        // WHEN - THEN
+
+        assertThrows(UserAlreadyExistsException.class, () -> service.addUser(userId2, name2, email2, registerDate));
+    }
+
     @Test
     void testUpdateUserEmail() throws NotFoundException, UserAlreadyExistsException {
 

@@ -5,49 +5,63 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.devsenior.juanfe.Exceptions.NotFoundException;
+import com.devsenior.juanfe.Exceptions.UserAlreadyExistsException;
 import com.devsenior.juanfe.model.User;
 
-<span class="fc" id="L10">public class UserService {</span>
+<span class="fc" id="L11">public class UserService {</span>
 
-<span class="fc" id="L12">    private List&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L13">    private List&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
 
-    public void addUser(String id, String name, String email) {
-<span class="fc" id="L15">        users.add(new User(id, name, email));</span>
-<span class="fc" id="L16">    }</span>
+    public void addUser(String id, String name, String email) throws UserAlreadyExistsException {
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if (userExists(id)) {</span>
+<span class="fc" id="L17">            throw new UserAlreadyExistsException(&quot;El usuario con el id: &quot; + id + &quot; ya existe&quot;);</span>
 
-    public void addUser(String id, String name, String email, LocalDate registerDate) {
-<span class="fc" id="L19">        users.add(new User(id, name, email, registerDate));</span>
-<span class="fc" id="L20">    }</span>
+        }
+<span class="fc" id="L20">        users.add(new User(id, name, email));</span>
+<span class="fc" id="L21">    }</span>
+
+    public void addUser(String id, String name, String email, LocalDate registerDate)
+            throws UserAlreadyExistsException {
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (userExists(id)) {</span>
+<span class="fc" id="L26">            throw new UserAlreadyExistsException(&quot;El usuario con el id: &quot; + id + &quot; ya existe&quot;);</span>
+
+        }
+<span class="fc" id="L29">        users.add(new User(id, name, email, registerDate));</span>
+<span class="fc" id="L30">    }</span>
 
     public List&lt;User&gt; getAllUsers() {
-<span class="fc" id="L23">        return users;</span>
+<span class="fc" id="L33">        return users;</span>
     }
 
     public User getUserById(String id) throws NotFoundException {
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        for (User user : users) {</span>
-<span class="pc bpc" id="L28" title="1 of 2 branches missed.">            if (user.getId().equals(id)) {</span>
-<span class="fc" id="L29">                return user;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (User user : users) {</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            if (user.getId().equals(id)) {</span>
+<span class="fc" id="L39">                return user;</span>
             }
-        }
-        
-<span class="fc" id="L33">        throw new NotFoundException(&quot;No existe el usuario con el id: &quot; + id);</span>
+<span class="nc" id="L41">        }</span>
+
+<span class="fc" id="L43">        throw new NotFoundException(&quot;No existe el usuario con el id: &quot; + id);</span>
     }
 
-    public void updateUserEmail(String id, String email) throws NotFoundException{
-<span class="fc" id="L37">       var user = getUserById(id);</span>
-<span class="fc" id="L38">        user.setEmail(email);</span>
-<span class="fc" id="L39">    }</span>
-
-    public void updateUserName(String id, String name) throws NotFoundException{
-<span class="fc" id="L42">        var user = getUserById(id);</span>
-<span class="fc" id="L43">         user.setName(name);</span>
-<span class="fc" id="L44">     }</span>
-
-     public void deleteUserById(String id) throws NotFoundException{
+    public void updateUserEmail(String id, String email) throws NotFoundException {
 <span class="fc" id="L47">        var user = getUserById(id);</span>
-<span class="fc" id="L48">        users.remove(user);</span>
-<span class="fc" id="L49">     }</span>
+<span class="fc" id="L48">        user.setEmail(email);</span>
+<span class="fc" id="L49">    }</span>
 
+    public void updateUserName(String id, String name) throws NotFoundException {
+<span class="fc" id="L52">        var user = getUserById(id);</span>
+<span class="fc" id="L53">        user.setName(name);</span>
+<span class="fc" id="L54">    }</span>
+
+    public void deleteUserById(String id) throws NotFoundException {
+<span class="fc" id="L57">        var user = getUserById(id);</span>
+<span class="fc" id="L58">        users.remove(user);</span>
+<span class="fc" id="L59">    }</span>
+
+    // Metodo para validar si un usuario existe ya
+    public boolean userExists(String id) {
+<span class="fc" id="L63">        return users.stream().anyMatch(user -&gt; user.getId().equals(id));</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

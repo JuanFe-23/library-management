@@ -1,5 +1,6 @@
 C:\Programacion\Java\Modulo 3\library-management\src\main\java\com\devsenior\juanfe\Exceptions\BookNotAvailableException.java
 C:\Programacion\Java\Modulo 3\library-management\src\main\java\com\devsenior\juanfe\Exceptions\NotFoundException.java
+C:\Programacion\Java\Modulo 3\library-management\src\main\java\com\devsenior\juanfe\Exceptions\UserAlreadyExistsException.java
 C:\Programacion\Java\Modulo 3\library-management\src\main\java\com\devsenior\juanfe\Main.java
 C:\Programacion\Java\Modulo 3\library-management\src\main\java\com\devsenior\juanfe\model\Book.java
 C:\Programacion\Java\Modulo 3\library-management\src\main\java\com\devsenior\juanfe\model\Loan.java

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.devsenior.juanfe.service.UserServiceTest" time="0.057" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.devsenior.juanfe.service.UserServiceTest" time="0.041" tests="12" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CO"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\juanf\AppData\Local\Temp\surefire14745577876978799194\surefirebooter-20250225222930874_3.jar C:\Users\juanf\AppData\Local\Temp\surefire14745577876978799194 2025-02-25T22-29-30_677-jvmRun1 surefire-20250225222930874_1tmp surefire_0-20250225222930874_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\juanf\AppData\Local\Temp\surefire8596387736291684702\surefirebooter-20250226182922865_3.jar C:\Users\juanf\AppData\Local\Temp\surefire8596387736291684702 2025-02-26T18-29-22_730-jvmRun1 surefire-20250226182922865_1tmp surefire_0-20250226182922865_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Programacion\Java\Modulo 3\library-management\target\test-classes;C:\Programacion\Java\Modulo 3\library-management\target\classes;C:\Users\juanf\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.4\junit-jupiter-engine-5.11.4.jar;C:\Users\juanf\.m2\repository\org\junit\platform\junit-platform-engine\1.11.4\junit-platform-engine-1.11.4.jar;C:\Users\juanf\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\juanf\.m2\repository\org\junit\platform\junit-platform-commons\1.11.4\junit-platform-commons-1.11.4.jar;C:\Users\juanf\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.4\junit-jupiter-api-5.11.4.jar;C:\Users\juanf\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\juanf\.m2\repository\org\mockito\mockito-core\5.15.2\mockito-core-5.15.2.jar;C:\Users\juanf\.m2\repository\net\bytebuddy\byte-buddy\1.15.11\byte-buddy-1.15.11.jar;C:\Users\juanf\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.11\byte-buddy-agent-1.15.11.jar;C:\Users\juanf\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\juanf\AppData\Local\Temp\surefire14745577876978799194\surefirebooter-20250225222930874_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\juanf\AppData\Local\Temp\surefire8596387736291684702\surefirebooter-20250226182922865_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+8-LTS-188"/>
@@ -58,14 +58,16 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testAddUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.003"/>
-  <testcase name="testGetUserByIdWhenNotExistingUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.009"/>
-  <testcase name="testGetAllUsers" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.004"/>
-  <testcase name="testAddUserWithRegistrationDate" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.002"/>
+  <testcase name="testAddUserWhenUserAlreadyExistsWithRegistrationDate" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.003"/>
+  <testcase name="testAddUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.001"/>
+  <testcase name="testGetUserByIdWhenNotExistingUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.004"/>
+  <testcase name="testGetAllUsers" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.003"/>
+  <testcase name="testAddUserWithRegistrationDate" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.004"/>
   <testcase name="testUpdateName" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.001"/>
-  <testcase name="testDeleteUserWhenNotExistingUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.003"/>
+  <testcase name="testDeleteUserWhenNotExistingUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.002"/>
   <testcase name="testDeleteUser" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.001"/>
-  <testcase name="testGetUserById" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.001"/>
-  <testcase name="testUpdateUserEmail" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.003"/>
-  <testcase name="testGetNonExistingUserById" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.005"/>
+  <testcase name="testGetUserById" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.002"/>
+  <testcase name="testUpdateUserEmail" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.002"/>
+  <testcase name="testAddUserWhenUserAlreadyExists" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.002"/>
+  <testcase name="testGetNonExistingUserById" classname="com.devsenior.juanfe.service.UserServiceTest" time="0.002"/>
 </testsuite>

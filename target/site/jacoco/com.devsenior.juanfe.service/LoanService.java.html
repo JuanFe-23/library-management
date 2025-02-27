@@ -31,7 +31,7 @@ public class LoanService {
 <span class="fc" id="L31">                throw new BookNotAvailableException(&quot;El libro con isbn: &quot; + isbn + &quot; ya esta prestado&quot;);</span>
 
             }
-        }
+<span class="fc" id="L34">        }</span>
 
 <span class="fc" id="L36">        loans.add(new Loan(user, book));</span>
 
@@ -44,10 +44,10 @@ public class LoanService {
 <span class="fc" id="L44">                loan.setState(LoanState.FINISHED);</span>
 <span class="fc" id="L45">                return;</span>
             }
-        }
+<span class="fc" id="L47">        }</span>
 
 <span class="fc" id="L49">        throw new NotFoundException(</span>
-<span class="fc" id="L50">                &quot;No hay ningun prestamo del libro con isbn: &quot; + isbn + &quot; del usuario con id: &quot; + userId);</span>
+                &quot;No hay ningun prestamo del libro con isbn: &quot; + isbn + &quot; del usuario con id: &quot; + userId);
 
     }
 
@@ -60,7 +60,7 @@ public class LoanService {
 <span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if (loan.getUser().getId().equals(userId)) {</span>
 <span class="fc" id="L61">                return loan;</span>
             }
-        }
+<span class="nc" id="L63">        }</span>
 <span class="fc" id="L64">        throw new NotFoundException(&quot;No hay ningun prestamo del usuario con id: &quot; + userId);</span>
     }
 
