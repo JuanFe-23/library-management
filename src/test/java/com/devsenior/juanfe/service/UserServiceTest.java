@@ -222,6 +222,7 @@ public class UserServiceTest {
         // THEN
 
         assertNotNull(user);
+        assertEquals(1, service.getAllUsers().size());
         assertEquals(userId, user.getId());
         assertEquals(name, user.getName()); 
         assertEquals(email, user.getEmail()); 

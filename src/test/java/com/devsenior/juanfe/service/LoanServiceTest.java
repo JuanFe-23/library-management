@@ -12,7 +12,6 @@ import org.mockito.Mockito;
 import com.devsenior.juanfe.Exceptions.BookNotAvailableException;
 import com.devsenior.juanfe.Exceptions.NotFoundException;
 import com.devsenior.juanfe.model.Book;
-import com.devsenior.juanfe.model.Loan;
 import com.devsenior.juanfe.model.LoanState;
 import com.devsenior.juanfe.model.User;
 
@@ -121,7 +120,7 @@ public class LoanServiceTest {
 
         Mockito.when(userService.getUserById(userId)).thenReturn(mockUser);
         Mockito.when(bookService.getBookByIsbn(isbn)).thenReturn(mockBook);
-        
+
         service.loanBook(userId, isbn);
 
         // WHEN

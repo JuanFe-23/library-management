@@ -67,6 +67,8 @@ public class BookServiceTest {
             assertTrue(true);
         }
 
+        assertTrue(service.getAllBooks().isEmpty());
+
     }
 
     @Test
@@ -120,6 +122,7 @@ public class BookServiceTest {
         // THEN
 
         assertNotNull(book);
+        assertEquals(1, service.getAllBooks().size());
         assertEquals(title, book.getTitle());
         assertEquals(author, book.getAuthor());
         
